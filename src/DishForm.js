@@ -5,9 +5,9 @@ const DishForm = () => {
   useBodyScrollLock();
 
   return (
-    <div class="dish-card">
+    <div className="dish-card">
       <form>
-        <div class="form-row">
+        <div className="form-row">
           <label htmlFor="name">Name: </label>
           <input type="text" id="name" />
         </div>
