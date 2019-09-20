@@ -1,23 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
+import useAbortableFetch from "use-abortable-fetch";
 import Toggle from "./Toggle";
 import { useTitleInput } from "./hooks/useTitleInput";
 
 const App = () => {
   const [name, setName] = useTitleInput("");
   const ref = useRef();
-  const [dishes, setDishes] = useState([]);
 
-  const fetchDishes = async () => {
-    const res = await fetch(
-      "https://my-json-server.typicode.com/leveluptuts/fakeapi/dishes"
-    );
-    const data = await res.json();
-    setDishes(data);
-  };
-
-  useEffect(() => {
-    fetchDishes();
-  }, []); //second parameter of useEffect, only run this on mount (essentially a componentDidMount);
+  const { data, loading } = useAbortableFetch(
+    "https://my-json-server.typicode.com/leveluptuts/fakeapi/dishes"
+  );
+  if (!data) return null;
 
   return (
     // attach the ref to a DOM element
@@ -40,7 +33,7 @@ const App = () => {
         />
         <button>Submit</button>
       </form>
-      {dishes.map(dish => (
+      {data.map(dish => (
         <article className="dish-card dish-card--withImage">
           <h3>{dish.name}</h3>
           <p>{dish.desc}</p>
