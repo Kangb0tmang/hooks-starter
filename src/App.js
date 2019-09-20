@@ -15,7 +15,7 @@ const App = () => {
 
   useEffect(() => {
     fetchDishes();
-  }, []); //second paramater, only run this on mount (essentially a componentDidMount));
+  }, []); //second parameter of useEffect, only run this on mount (essentially a componentDidMount);
 
   return (
     // attach the ref to a DOM element
