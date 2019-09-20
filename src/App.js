@@ -8,7 +8,9 @@ const App = () => {
   const [dishes, setDishes] = useState([]);
 
   const fetchDishes = async () => {
-    const res = await fetch('https://my-json-server.typicode.com/leveluptuts/fakeapi/dishes');
+    const res = await fetch(
+      "https://my-json-server.typicode.com/leveluptuts/fakeapi/dishes"
+    );
     const data = await res.json();
     setDishes(data);
   };
@@ -49,7 +51,6 @@ const App = () => {
           </div>
         </article>
       ))}
-
     </div>
   );
 };
